@@ -10,6 +10,9 @@ The meetings collected by this project is posted to [this link](https://pgh-publ
 - [Fill out this form](https://airtable.com/shrRv027NLgToRFd6) to join our [Slack channel](https://citybureau.slack.com/#labs_city_scrapers)
 - Refer to our documentation on [getting started with development](04-development.md)
 
+## Tutorial
+New to webscraping? Check out our [tutorial!](tutorial.md)
+
 ## Development
 1. [New to Github or Python](setuphelp.md)
 2. [Development](04-development.md)

@@ -134,4 +134,7 @@ src/
 logs/*.log
 travis/*.json
 
+#tutorial page
+tests/files/tutorial.html
+
 # output files: local gitignore added to city_scrapers/local_outputs/
