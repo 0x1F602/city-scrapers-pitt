@@ -8,6 +8,9 @@ This is a City Scrapers project being run in Pittsburgh. We are templated off of
 
 Get started by going through our [documentation](https://pgh-public-meetings.github.io/city-scrapers-pitt)!
 
+If you're new to webscraping, check out our [tutorial!](docs/tutorial.md)
+
+
 ## Calendar link
 
 The meetings collected by this project is posted to this [calendar](https://pgh-public-meetings.github.io/events/)
