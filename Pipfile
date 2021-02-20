@@ -17,6 +17,9 @@ scrapelib = "*"
 scrapy = "*"
 scrapy-sentry = "*"
 scrapy-wayback-middleware = "*"
+spacy = "*"
+setuptools = "*"
+wheel = "*"
 
 [dev-packages]
 black = "==19.10b0"
