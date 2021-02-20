@@ -7,6 +7,8 @@ from city_scrapers_core.constants import BOARD
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 
+import spacy
+
 # Just for my own debugging purposes
 from pprint import pprint
 
@@ -45,6 +47,35 @@ class PghPostGazetteOtherLegalNoticesSpider(CityScrapersSpider):
         how_relevant = self._is_this_relevant(body_text)
         if how_relevant < self.relevancy_threshold:
             return
+
+        # https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da
+        # nlp = spacy.load("en_core_web_sm")
+
+
+        # https://spacy.io/models 
+        # python -m spacy download en_core_web_trf
+        # Honestly, we need to generate our entity recognizer
+        # or use rule-based matching
+        #       https://datascience.stackexchange.com/a/73785
+        nlp = spacy.load("en_core_web_trf")
+        doc = nlp(body_text) 
+        labeled_entities = [(X.text, X.label_) for X in doc.ents]
+
+        date = ""
+        time = ""
+        event = ""
+        for entity in labeled_entities:
+            pprint(entity[0])
+            pprint(entity[1])
+            pprint(spacy.explain(entity[1]))
+            if entity[1] == "DATE":
+                date = entity[0]
+            elif entity[1] == "TIME":
+                time = entity[0]
+            # elif entity[1] == "EVENT":
+            #     event += entity[0]
+
+        print("date " + date + " time " + time) 
 
         meeting = Meeting(
             title=title.get(),
