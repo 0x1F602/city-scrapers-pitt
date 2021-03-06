@@ -5,7 +5,7 @@ ENV LC_ALL C.UTF-8
 
 # Install pipenv and compilation dependencies
 COPY Pipfile .
-# COPY Pipfile.lock .
+COPY Pipfile.lock .
 RUN pip install pipenv && apt-get update && apt-get install -y --no-install-recommends gcc git pastebinit
 # Install python dependencies in /.venv
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv update --dev
