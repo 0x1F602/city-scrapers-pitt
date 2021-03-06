@@ -14,9 +14,9 @@ from city_scrapers_core.spiders import CityScrapersSpider
 ADDRESS = ("710 Washington Road, Pittsburgh, PA 152289",)
 LOCATION_NAME = ("Municipal Building",)
 
-MONTH_AND_DAY_PATTERN = r"[Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec]\S* \d+"
-MONTH_PATTERN = r"[Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec]\S*"
-DOUBLE_ASTERISK_PATTERN = r"\*\*"
+MONTH_AND_DAY_PATTERN = "[Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec]\S* \d+"
+MONTH_PATTERN = "[Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec]\S*"
+DOUBLE_ASTERISK_PATTERN = "\*\*"
 
 
 class MtLeboSpider(CityScrapersSpider):
@@ -121,7 +121,7 @@ class MtLeboSpider(CityScrapersSpider):
         """Retrieves time in AM/PM format. As of this writing, it is 8 p.m."""
         timepath = "//h2/text()[contains(.,'Meetings')]/following::ul[1]/li[1]/text()"
         time = response.xpath(timepath).get(0)
-        groups = re.search(r"(\d+ [a-z])\.([a-z])\.", time).groups()
+        groups = re.search("(\d+ [a-z])\.([a-z])\.", time).groups()
         return groups[0].upper() + groups[1].upper()
 
     def getMonth(self, monthAndDay):
@@ -131,14 +131,14 @@ class MtLeboSpider(CityScrapersSpider):
         return re.search(MONTH_AND_DAY_PATTERN, monthAndDay).group(0)
 
     def getDay(self, monthAndDay):
-        pattern = r"\d+"
+        pattern = "\d+"
         return re.search(pattern, monthAndDay).group(0)
 
     def getYear(self, response):
         xpath = "//h2/text()[contains(.,'Meeting Schedule')]"
         yearString = response.xpath(xpath).get(0)
-        pattern = r"202\d Meeting Schedule"
+        pattern = "202\d Meeting Schedule"
         if re.search(pattern, yearString) != None:
-            return int(re.search(r"202\d", yearString).group(0))
+            return int(re.search("202\d", yearString).group(0))
         else:
             raise ValueError("Valid Year String Not Found")
