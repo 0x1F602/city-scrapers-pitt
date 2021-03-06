@@ -131,13 +131,13 @@ class MtLeboSpider(CityScrapersSpider):
         return re.search(MONTH_AND_DAY_PATTERN, monthAndDay).group(0)
 
     def getDay(self, monthAndDay):
-        pattern = "\d+"
+        pattern = r"\d+"
         return re.search(pattern, monthAndDay).group(0)
 
     def getYear(self, response):
         xpath = "//h2/text()[contains(.,'Meeting Schedule')]"
         yearString = response.xpath(xpath).get(0)
-        pattern = "202\d Meeting Schedule"
+        pattern = r"202\d Meeting Schedule"
         if re.search(pattern, yearString) != None:
             return int(re.search(r"202\d", yearString).group(0))
         else:
